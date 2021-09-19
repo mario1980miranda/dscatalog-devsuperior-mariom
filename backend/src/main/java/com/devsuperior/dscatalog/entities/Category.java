@@ -52,5 +52,4 @@ public class Category implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 	
-	
 }
