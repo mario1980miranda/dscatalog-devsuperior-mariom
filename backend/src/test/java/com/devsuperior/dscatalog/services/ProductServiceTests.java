@@ -28,6 +28,9 @@ import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.dscatalog.tests.Factory;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 @ExtendWith(SpringExtension.class)
 public class ProductServiceTests {
 
@@ -77,6 +80,7 @@ public class ProductServiceTests {
 
 	@Test
 	public void insertShouldReturnProductDTO() {
+		productDTO.setId(null);
 		final ProductDTO result = service.insert(productDTO);
 		
 		Mockito.verify(repository, Mockito.times(1)).save(ArgumentMatchers.any());
@@ -151,5 +155,10 @@ public class ProductServiceTests {
 		});
 		
 		Mockito.verify(repository, Mockito.times(1)).deleteById(existingId);
+	}
+	
+	@Test
+	public void equalsHashCodeContracts() {
+	    EqualsVerifier.forClass(Product.class).suppress(Warning.ALL_FIELDS_SHOULD_BE_USED).verify();
 	}
 }

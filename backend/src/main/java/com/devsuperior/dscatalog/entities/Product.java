@@ -124,7 +124,7 @@ public class Product implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Product))
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
