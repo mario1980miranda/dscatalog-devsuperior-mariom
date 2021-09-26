@@ -83,7 +83,7 @@ public class Category implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Category))
 			return false;
 		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
