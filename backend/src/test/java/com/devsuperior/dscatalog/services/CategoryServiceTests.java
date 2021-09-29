@@ -2,6 +2,7 @@ package com.devsuperior.dscatalog.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.devsuperior.dscatalog.dto.CategoryDTO;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
+import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.dscatalog.tests.Factory;
 
 @ExtendWith(SpringExtension.class)
@@ -47,6 +49,25 @@ public class CategoryServiceTests {
 		
 		Mockito.when(repository.findAll()).thenReturn(new ArrayList<>(List.of(category)));
 		Mockito.when(repository.findAll((Pageable)ArgumentMatchers.any())).thenReturn(page);
+		
+		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(category));
+		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
+	}
+	
+	@Test
+	public void findByIdShouldThrowEntityNotFoundExceptionWhenIdDoesNotExist() {
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.findById(nonExistingId);
+		});
+	}
+	
+	@Test
+	public void findByIdShouldReturnCategoryDTOWhenIdExists() {
+		final CategoryDTO result = service.findById(existingId);
+		
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(existingId, result.getId());
+		Mockito.verify(repository).findById(existingId);
 	}
 	
 	@Test
