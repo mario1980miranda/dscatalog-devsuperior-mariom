@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.tests.Factory;
-import com.devsuperior.dscatalog.tests.Factory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
@@ -32,14 +31,12 @@ public class ProductResourceIT {
 	
 	private Long existingId;
 	private Long nonExistingId;
-	private Long dependentId;
 	private Long countTotalProducts;
 	
 	@BeforeEach
 	void setUp() {
 		existingId = 1L;
 		nonExistingId = 1000L;
-		dependentId = 50L;
 		countTotalProducts = 25L;
 	}
 	
