@@ -3,13 +3,18 @@ package com.devsuperior.dscatalog.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import com.devsuperior.dscatalog.entities.User;
 
 public class UserDTO {
 
+	@NotBlank(message = "Champs requis")
 	private Long id;
 	private String firstName;
 	private String lastName;
+	@Email(message = "Entrez un email valide")
 	private String email;
 	
 	private Set<RoleDTO> roles = new HashSet<>();
