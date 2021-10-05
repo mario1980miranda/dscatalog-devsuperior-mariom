@@ -10,8 +10,8 @@ import com.devsuperior.dscatalog.entities.User;
 
 public class UserDTO {
 
-	@NotBlank(message = "Champs requis")
 	private Long id;
+	@NotBlank(message = "Champs requis")
 	private String firstName;
 	private String lastName;
 	@Email(message = "Entrez un email valide")
