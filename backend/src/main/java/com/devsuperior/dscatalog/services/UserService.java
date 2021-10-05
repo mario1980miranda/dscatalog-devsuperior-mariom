@@ -7,6 +7,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +33,12 @@ public class UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-
+	@Transactional(readOnly = true)
+	public Page<UserDTO> findAll(final Pageable pageable) {
+		final Page<User> list = repository.findAll(pageable);
+		return list.map(x -> new UserDTO(x));
+	}
+	
 	@Transactional(readOnly = true)
 	public UserDTO findById(final Long id) {
 		final Optional<User> obj = this.repository.findById(id);
