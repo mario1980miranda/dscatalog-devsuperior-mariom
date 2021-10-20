@@ -56,7 +56,7 @@ public class ProductResourceTests {
 		nonExistingId = 1000L;
 		dependentId = 50L;
 		
-		when(service.findAllPaged(any())).thenReturn(page);
+		when(service.findAllPaged(any(), any())).thenReturn(page);
 		
 		when(service.findById(existingId)).thenReturn(productDTO);
 		when(service.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
