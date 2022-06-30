@@ -49,9 +49,11 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Instaler NodeJs
 
-Dans ce projet on doit utiliser la version 14.18.2
+Dans ce projet on doit utiliser la version 14.18.2.
+
 <https://nodejs.org/download/release/v14.18.2/>
-Crocher l'option "automatic tools for native modules"
+
+Crocher l'option "automatic tools for native modules".
 
 ## En utilisant gitbash terminal
 
