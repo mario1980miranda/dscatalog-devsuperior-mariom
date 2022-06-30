@@ -156,4 +156,4 @@ Ajoute dans l’item **"compilerOptions"**  pour faciliter l'import de composant
 import 'bootstrap/dist/css/bootstrap.css';
 ```
 
-+ yarn start pour vérifier si ça marche
++ yarn start pour vérifier si cela marche
