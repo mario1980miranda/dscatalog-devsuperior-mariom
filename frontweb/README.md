@@ -157,3 +157,30 @@ import 'bootstrap/dist/css/bootstrap.css';
 ```
 
 + yarn start pour vérifier si cela marche
+
+## Personnaliser Bootstrap
+
+`yarn add node-sass@4.14.1`
+
+### Créer le fichier custom.scss
+
++ Dans public > src créer les dossiers :
+    + assets > styles
++ Créer le fichier custom.scss avec le contenu :
+
+```css
+$theme-colors: (
+  'primary': #407bff,
+);
+
+$body-bg: #e5e5e5;
+$body-color: #263238;
+
+@import '~bootstrap/scss/bootstrap.scss';
+```
+
++ Supprimer l'import du bootstrap dans le fichier index.tsx
+
+### Dans le fichier App.tsx ajouter l'import :
+
++ import './assets/styles/custom.scss';
