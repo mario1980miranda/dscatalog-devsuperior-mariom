@@ -134,10 +134,26 @@ ReactDOM.render(
 + Supprimer les commentaires
 + Supprimer l'appel à reportWebVitals();
 
-## Dans le ficher tsconfig.json
+### Dans le ficher tsconfig.json
 
 Ajoute dans l’item **"compilerOptions"**  pour faciliter l'import de composants
 
 ```json
 "baseUrl": "./src",
 ```
+
+## Ajouter Bootstrap
+
+### Dans le projet executer le command :
+
+`yarn add bootstrap`
+
+### Dans le ficher index.tsx
+
++ Ajoute l'import avant d'import App
+
+```javascript
+import 'bootstrap/dist/css/bootstrap.css';
+```
+
++ yarn start pour vérifier si ça marche
