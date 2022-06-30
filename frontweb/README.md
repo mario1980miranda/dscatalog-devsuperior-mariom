@@ -184,3 +184,21 @@ $body-color: #263238;
 ### Dans le fichier App.tsx ajouter l'import :
 
 + import './assets/styles/custom.scss';
+
+## Instaler Prettier - Code formateur :
+
+### Dans le dossier src
+
++ Créer le fichier .prittierrc
+```json
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true
+}
+```
+
+### Dans VSCode
+
++ Installer l'extension prettier code formatter
++ shift + alt + F pour formater
