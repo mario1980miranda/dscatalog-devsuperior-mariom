@@ -99,3 +99,45 @@ ReactDOM.render(
 );
 ```
 
+## Nettoyer le projet
+
+### Dans le dossier public supprimer :
+
++ logo...png
++ manifest.json
++ robots.txt
+
+### Dans le fichier index.html :
+
++ Supprimer les commentaires
+
+### Dans le dossier src supprimer :
+
++ App.test.tsx
++ logo.svg
++ reportWebVitals.ts
++ setupTests.ts
+
+### Dans le fichier App.css
+
++ Supprimer le contenu
+
+### Dans le fichier App.tsx :
+
++ L'import du React n'est pas nécessaire dès la version 17
++ Nettoyer le contenu html de la fonction jsx
+
+### Supprimer le fichier index.css
+
+### Dans le fichier index.tsx
+
++ Supprimer les commentaires
++ Supprimer l'appel à reportWebVitals();
+
+## Dans le ficher tsconfig.json
+
+Ajoute dans l’item **"compilerOptions"**  pour faciliter l'import de composants
+
+```json
+"baseUrl": "./src",
+```
