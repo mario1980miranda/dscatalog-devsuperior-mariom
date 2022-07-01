@@ -203,6 +203,22 @@ $body-color: #263238;
 + Installer l'extension prettier code formatter
 + shift + alt + F pour formater
 
+## Références à propos de Bootstrap
+
++ Bootstrap Breakpoints
++ Bootstrap Containers
++ Bootstrap Grid System
+
+## Références à propos de Flexbox
+
++ <https://www.w3schools.com/css/css3_flexbox.asp>
++ <https://flexboxfroggy.com/>
++ <https://css-tricks.com/snippets/css/a-guide-to-flexbox>
+
+## Google fonts
+
++ <https://fonts.google.com/>
+
 # Créer composants
 
 ## Navbar
@@ -215,4 +231,7 @@ $body-color: #263238;
 + Dans le fichier App.tsx
     + Import du composant
 
-**Attention**==Les noms des composants doivent toujours avoir le même nom du dossier!==
+**Attention: ** 
+==Les noms des composants doivent toujours avoir le même nom du dossier==
+
+
