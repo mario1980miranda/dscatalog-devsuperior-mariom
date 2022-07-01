@@ -202,3 +202,17 @@ $body-color: #263238;
 
 + Installer l'extension prettier code formatter
 + shift + alt + F pour formater
+
+# Créer composants
+
+## Navbar
+
++ Créer dossier
+    + src > components > Navbar
++ Créer fichier
+    + index.tsx
+    + Créer la fonction Navbar (vérifier le code)
++ Dans le fichier App.tsx
+    + Import du composant
+
+**Attention**==Les noms des composants doivent toujours avoir le même nom du dossier!==
