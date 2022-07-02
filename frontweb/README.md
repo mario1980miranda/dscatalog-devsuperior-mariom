@@ -231,7 +231,46 @@ $body-color: #263238;
 + Dans le fichier App.tsx
     + Import du composant
 
-**Attention: ** 
-==Les noms des composants doivent toujours avoir le même nom du dossier==
+**Attention:** Les noms des composants doivent toujours avoir le même nom du dossier.
 
+### Button humbuger menu
 
++ Ajouter le code default dans le component Navbar
+
+```javascript
+<button
+  className="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#dscatalog-navbar"
+  aria-controls="dscatalog-navbar"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <span className="navbar-toggler-icon"></span>
+</button>
+```
+
++ Référencer le button dans la collection d'éléments ul/li avec la tag id
+
+`<div className="collapse navbar-collapse" id="dscatalog-navbar">`
+
++ Importer le javascript du bootstrap
+
+`import 'bootstrap/js/src/collapse.js';`
+
++ Ajouter le theme dark au composant Navbar
+
+`navbar-dark`
+```javascript
+<nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">`
+```
+
++ Modifier la hauteur de la barre de navigation pour le contenu dynamique dans les styles
+
+```css
+.main-nav {
+    padding-left: 40px;
+    min-height: 70px;
+}
+```
