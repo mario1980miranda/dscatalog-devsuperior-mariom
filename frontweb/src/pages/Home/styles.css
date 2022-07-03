@@ -1,0 +1,14 @@
+.home-container {
+    padding: 20px;
+    font-size: 26px;
+    border: 1px solid red;
+}
+
+.home-image-container {
+    padding: 0 15px;
+}
+
+.home-image-container svg {
+    width: 100%;
+    height: auto;
+}
