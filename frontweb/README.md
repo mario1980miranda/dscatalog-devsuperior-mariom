@@ -235,7 +235,7 @@ $body-color: #263238;
 
 ### Button humbuger menu
 
-+ Ajouter le code default dans le component Navbar
+#### Ajouter le code default dans le component Navbar
 
 ```javascript
 <button
@@ -251,22 +251,22 @@ $body-color: #263238;
 </button>
 ```
 
-+ Référencer le button dans la collection d'éléments ul/li avec la tag id
+#### Référencer le button dans la collection d'éléments ul/li avec la tag id
 
 `<div className="collapse navbar-collapse" id="dscatalog-navbar">`
 
-+ Importer le javascript du bootstrap
+#### Importer le javascript du bootstrap
 
 `import 'bootstrap/js/src/collapse.js';`
 
-+ Ajouter le theme dark au composant Navbar
+#### Ajouter le theme dark au composant Navbar
 
 `navbar-dark`
 ```javascript
-<nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">`
+<nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
 ```
 
-+ Modifier la hauteur de la barre de navigation pour le contenu dynamique dans les styles
+#### Modifier la hauteur de la barre de navigation pour le contenu dynamique dans les styles
 
 ```css
 .main-nav {
