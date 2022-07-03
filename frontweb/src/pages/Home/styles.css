@@ -2,7 +2,6 @@
     padding: 10px;
     font-size: 20px;
     text-align: center;
-    border: 1px solid red;
 }
 
 .home-card {
@@ -11,7 +10,6 @@
     background-color: #FFF;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-    border: 1px solid orange;
 }
 
 .home-content-container {
@@ -19,7 +17,6 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 10px 50px 10px;
-    border: 1px solid blue;
 }
 
 .home-content-container h1 {
@@ -37,10 +34,96 @@
 
 .home-image-container {
     padding: 50px 15px;
-    border: 1px solid purple;
 }
 
 .home-image-container svg {
     width: 100%;
     height: auto;
+}
+
+@media (min-width: 576px) {
+    .home-container {
+        padding: 15px;
+        font-size: 40px;
+    }
+
+    .home-image-container svg {
+        width: 506px;
+    }
+
+    .home-content-container h1 {
+        width: 506px;
+        margin-bottom: 20px;
+    }
+
+    .home-content-container p {
+        width: 506px;
+        margin-bottom: 20px;
+    }
+
+    .home-content-container button {
+        width: 506px;
+    }
+}
+
+@media (min-width: 768px) {
+    .home-content-container {
+        padding: 20px 20px 100px 20px;
+    }
+
+    .home-image-container {
+        padding: 100px 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .home-container {
+        font-size: 55px;
+        padding: 40px;
+    }
+    .home-content-container {
+        padding: 20px 20px 150px 20px;
+    }
+    
+    .home-content-container h1 {
+        width: 700px;
+        margin-bottom: 26px;
+    }
+    
+    .home-content-container p {
+        width: 700px;
+        margin-bottom: 45px;
+    }
+
+    .home-image-container {
+        padding: 125px 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .home-card {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: calc(((85vh - 480px) / 2) - 20px) 0;
+    }
+
+    .home-content-container {
+        align-items: flex-start;
+        text-align: left;
+        align-content: space-between;
+        flex-flow: wrap;
+        padding: 20px;
+        height: 480px;
+        width: 700px;
+    }
+
+    .home-image-container {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .home-image-container svg {
+        width: 100%;
+    }
 }
