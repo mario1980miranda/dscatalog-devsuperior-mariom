@@ -274,3 +274,17 @@ $body-color: #263238;
     min-height: 70px;
 }
 ```
+
+## React Router DOM
+
+### Installer
+
+```yarn add react-router-dom@5.2.0 @types/react-router-dom@5.1.7```
+
+**Attention** Pour supprimer : ```yarn remove react-router-dom @types/react-router-dom```
+
+### Créer le composant Routes dans le dossier src
+
+```typescript
+
+```

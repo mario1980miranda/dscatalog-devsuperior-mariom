@@ -1,11 +1,10 @@
 import "./assets/styles/custom.scss";
 import "./App.css";
-import Catalog from "pages/Catalog";
-import Admin from "pages/Admin";
+import Routes from "Routes";
 
 const App = () => {
   return (
-    <Admin />
+    <Routes />
   );
 }
 
