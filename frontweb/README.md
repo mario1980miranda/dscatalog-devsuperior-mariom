@@ -286,5 +286,77 @@ $body-color: #263238;
 ### Créer le composant Routes dans le dossier src
 
 ```typescript
+import Navbar from "components/Navbar";
+import Admin from "pages/Admin";
+import Catalog from "pages/Catalog";
+import Home from "pages/Home";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+const Routes = () => (
+    <BrowserRouter>
+        <Navbar />
+        <Switch>
+            <Route path="/" exact>
+                <Home />
+            </Route>
+            <Route path="/products">
+                <Catalog />
+            </Route>
+            <Route path="/admin">
+                <Admin />
+            </Route>
+        </Switch>
+    </BrowserRouter>
+);
+
+export default Routes;
+```
+
+### Utiliser Link et NavLink du react-router-dom au lieu de <a>
+
+```typescript
+import "./styles.css";
+import 'bootstrap/js/src/collapse.js';
+import { Link, NavLink } from "react-router-dom";
+
+const Navbar = () => {
+  return (
+    <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
+      <div className="container-fluid">
+        <Link to="/" className="nav-logo-text">
+          <h4>DS Catalog</h4>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#dscatalog-navbar"
+          aria-controls="dscatalog-navbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="dscatalog-navbar">
+          <ul className="navbar-nav offset-md-2 main-menu">
+            <li>
+              <NavLink to="/" activeClassName="active" exact>
+                ACCUEIL
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/products">CATALOGUE</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin">ADMIN</NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
 ```
