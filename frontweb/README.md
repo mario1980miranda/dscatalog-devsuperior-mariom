@@ -313,3 +313,10 @@ const Navbar = () => {
 
 export default Navbar;
 ```
+
+## Props, State et Life Cycle
+
+<https://pt-br.reactjs.org/docs/components-and-props.html>
+
+<https://pt-br.reactjs.org/docs/state-and-lifecycle.html>
+
