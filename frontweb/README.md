@@ -320,3 +320,7 @@ export default Navbar;
 
 <https://pt-br.reactjs.org/docs/state-and-lifecycle.html>
 
+## Axios
+
+```yarn add axios```
+
