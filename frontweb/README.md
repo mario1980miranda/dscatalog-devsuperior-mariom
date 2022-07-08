@@ -324,3 +324,8 @@ export default Navbar;
 
 ```yarn add axios```
 
+## Loaders
+
+```yarn add react-content-loader```
+
+source : <https://github.com/danilowoz/react-content-loader>
