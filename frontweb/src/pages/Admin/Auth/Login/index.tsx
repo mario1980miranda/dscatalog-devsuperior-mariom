@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import { requestBackendLogin, saveAuthData } from 'util/requests';
+import { useState } from 'react';
 import ButtonIcon from 'components/ButtonIcon';
 
 import './styles.css';
-import { requestBackendLogin, saveAuthData } from 'util/requests';
-import { useState } from 'react';
 
 type FormData = {
   username: string;
@@ -14,6 +13,8 @@ type FormData = {
 
 const Login = () => {
   const [hasError, setHasError] = useState(false);
+
+  const history = useHistory();
 
   const {
     register,
@@ -27,6 +28,7 @@ const Login = () => {
         saveAuthData(response.data);
         setHasError(false);
         console.log('SUCESSO', response);
+        history.push('/admin');
       })
       .catch((error) => {
         setHasError(true);
