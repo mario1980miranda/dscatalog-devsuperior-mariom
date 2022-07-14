@@ -19,7 +19,7 @@ type LoginResponse = {
 
 type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
 
-type TokenData = {
+export type TokenData = {
   exp: number;
   user_name: string;
   authorities: Role[];
@@ -68,6 +68,10 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 
 export const saveAuthData = (obj: LoginResponse) => {
   localStorage.setItem(tokenKey, JSON.stringify(obj));
+};
+
+export const removeAuthData = () => {
+    localStorage.removeItem(tokenKey);
 };
 
 export const getAuthData = () => {
