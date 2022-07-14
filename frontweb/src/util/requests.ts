@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 
 type LoginData = {
-    username: string;
-    password: string;
-  };
+  username: string;
+  password: string;
+};
 
 type LoginResponse = {
-    access_token: string,
-    token_type: string,
-    expires_in: number,
-    scope: string,
-    userFirstName: string,
-    userId: number
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
 };
 
 export const BASE_URL =
@@ -45,11 +45,22 @@ export const requestBackendLogin = (loginData: LoginData) => {
   });
 };
 
-export const saveAuthData = (obj : LoginResponse) => {
-    localStorage.setItem(tokenKey, JSON.stringify(obj));
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers: headers });
+};
+
+export const saveAuthData = (obj: LoginResponse) => {
+  localStorage.setItem(tokenKey, JSON.stringify(obj));
 };
 
 export const getAuthData = () => {
-    const str = localStorage.getItem(tokenKey) ?? "{}";
-    return JSON.parse(str) as LoginResponse;
+  const str = localStorage.getItem(tokenKey) ?? '{}';
+  return JSON.parse(str) as LoginResponse;
 };
