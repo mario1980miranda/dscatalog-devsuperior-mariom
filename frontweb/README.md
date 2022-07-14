@@ -339,3 +339,8 @@ source : <https://github.com/danilowoz/react-content-loader>
 Pour utiliser x-www-form-urlencoded dans les requêtes OAuth 2.0
 
 ```yarn add qs @types/qs```
+
+## JWT Decoder
+
+```yarn add jwt-decode @types/jwt-decode```
+
