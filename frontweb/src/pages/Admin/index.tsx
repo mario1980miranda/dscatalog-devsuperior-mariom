@@ -1,7 +1,7 @@
-import { Switch } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
 import Navbar from './Navbar';
 import Users from './User';
+import { Switch } from 'react-router-dom';
 
 import './styles.css';
 
