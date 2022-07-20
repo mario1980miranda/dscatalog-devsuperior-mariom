@@ -719,8 +719,8 @@ export default App;
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 ```
 
-```typescript
-<code>...</code>
+[code language="javascript"]
+...
 
 const Login = () => {
   const location = useLocation<LocationState>();
@@ -751,5 +751,5 @@ const Login = () => {
       });
   };
 
-<code>...</code>
-```
+...
+[/code]
