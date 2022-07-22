@@ -28,8 +28,8 @@ const Form = () => {
     };
 
     requestBackend(config)
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        history.push('/admin/products');
       })
       .catch((error) => {
         console.log('ERROR', error);
