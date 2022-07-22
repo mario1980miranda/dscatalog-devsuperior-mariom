@@ -4,12 +4,30 @@ import { Product } from 'types/product';
 
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
 
 type Props = {
   product: Product;
 };
 
 const ProductCrudCard = ({ product }: Props) => {
+  const handleDelete = (productId: number) => {
+    if (!window.confirm('Tem certeza que deseja deletar?')) {
+      return;
+    }
+
+    const config: AxiosRequestConfig = {
+      method: 'DELETE',
+      url: `/products/${productId}`,
+      withCredentials: true,
+    };
+
+    requestBackend(config).then(() => {
+      console.log('DELETADO ID: ' + productId);
+    });
+  };
+
   return (
     <div className="base-card product-crud-card">
       <div className="product-crud-card-top-container">
@@ -27,7 +45,10 @@ const ProductCrudCard = ({ product }: Props) => {
         </div>
       </div>
       <div className="product-crud-card-buttons-container">
-        <button className="btn btn-outline-danger product-crud-card-buttom product-crud-card-buttom-first">
+        <button
+          onClick={() => handleDelete(product.id)}
+          className="btn btn-outline-danger product-crud-card-buttom product-crud-card-buttom-first"
+        >
           EXCLUIR
         </button>
         <Link to={`/admin/products/${product.id}`}>
