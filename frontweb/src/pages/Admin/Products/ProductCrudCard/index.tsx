@@ -1,17 +1,18 @@
 import ProductPrice from 'components/ProductPrice';
 import CategoryBadge from '../CategoryBadge';
 import { Product } from 'types/product';
-
-import './styles.css';
+import { requestBackend } from 'util/requests';
 import { Link } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
-import { requestBackend } from 'util/requests';
+
+import './styles.css';
 
 type Props = {
   product: Product;
+  onDelete: Function;
 };
 
-const ProductCrudCard = ({ product }: Props) => {
+const ProductCrudCard = ({ product, onDelete }: Props) => {
   const handleDelete = (productId: number) => {
     if (!window.confirm('Tem certeza que deseja deletar?')) {
       return;
@@ -24,7 +25,7 @@ const ProductCrudCard = ({ product }: Props) => {
     };
 
     requestBackend(config).then(() => {
-      console.log('DELETADO ID: ' + productId);
+      onDelete();
     });
   };
 
