@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Product } from 'types/product';
 import { requestBackend } from 'util/requests';
 import { Category } from 'types/category';
+import { toast } from 'react-toastify';
 import CurrencyInput from 'react-currency-input-field';
 import Select from 'react-select';
 
@@ -60,10 +61,11 @@ const Form = () => {
 
     requestBackend(config)
       .then(() => {
+        toast.info('Produto cadastrado com sucesso');
         history.push('/admin/products');
       })
       .catch((error) => {
-        console.log('ERROR', error);
+        toast.error('Falha ao cadastrar o produto');
       });
   };
 
