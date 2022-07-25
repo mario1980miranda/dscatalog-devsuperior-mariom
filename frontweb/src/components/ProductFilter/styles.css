@@ -1,0 +1,13 @@
+.product-filter-container {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .product-filter-container {
+    margin-left: 20px;
+    height: 60px;
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
