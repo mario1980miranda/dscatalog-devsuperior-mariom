@@ -16,12 +16,12 @@ const Catalog = () => {
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
-      method: "GET",
-      url: "/products",
+      method: 'GET',
+      url: '/products',
       params: {
         page: 0,
         size: 12,
-      }
+      },
     };
 
     setIsLoading(true);
@@ -40,16 +40,20 @@ const Catalog = () => {
         <h1>Catálogo de produtos</h1>
       </div>
       <div className="row">
-        {isLoading ? <CardLoader /> : (page?.content.map((product) => (
-          <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-        )))}
+        {isLoading ? (
+          <CardLoader />
+        ) : (
+          page?.content.map((product) => (
+            <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
+              <Link to="/products/1">
+                <ProductCard product={product} />
+              </Link>
+            </div>
+          ))
+        )}
       </div>
       <div className="row">
-        <Pagination />
+        <Pagination pageCount={page ? page.totalPages : 0} range={3} />
       </div>
     </div>
   );
