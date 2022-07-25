@@ -1,5 +1,6 @@
 import Pagination from 'components/Pagination';
 import ProductCrudCard from 'pages/Admin/Products/ProductCrudCard';
+import ProductFilter from 'components/ProductFilter';
 import { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,7 +9,6 @@ import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
 
 import './styles.css';
-import ProductFilter from 'components/ProductFilter';
 
 type ControlComponentsData = {
   activePage: number;
