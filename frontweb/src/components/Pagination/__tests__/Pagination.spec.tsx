@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Pagination from '..';
 
 describe('Pagination tests', () => {
@@ -29,5 +30,21 @@ describe('Pagination tests', () => {
     expect(page2).not.toHaveClass('pagination-link-active');
     expect(page3).not.toHaveClass('pagination-link-active');
     expect(page4).not.toBeInTheDocument();
+  });
+
+  test('next arrow should call onChange', async () => {
+    const pageCount = 3;
+    const range = 3;
+    const onChange = jest.fn();
+
+    render(
+      <Pagination pageCount={pageCount} range={range} onChange={onChange} />
+    );
+
+    const arrowNext = screen.getByTestId('arrow-next');
+
+    await userEvent.click(arrowNext);
+
+    expect(onChange).toHaveBeenCalledWith(1);
   });
 });
