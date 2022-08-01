@@ -4,8 +4,8 @@ import { requestBackendLogin } from 'util/requests';
 import { useContext, useState } from 'react';
 import { AuthContext } from 'AuthContext';
 import { saveAuthData } from 'util/storage';
-import ButtonIcon from 'components/ButtonIcon';
 import { getTokenData } from 'util/token';
+import ButtonIcon from 'components/ButtonIcon';
 
 import './styles.css';
 
