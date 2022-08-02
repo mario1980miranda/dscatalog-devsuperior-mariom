@@ -1,13 +1,14 @@
 import { AxiosRequestConfig } from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
+import Select from 'react-select';
+import { Category } from 'types/category';
 import { Product } from 'types/product';
 import { requestBackend } from 'util/requests';
-import { Category } from 'types/category';
 import { toast } from 'react-toastify';
-import CurrencyInput from 'react-currency-input-field';
-import Select from 'react-select';
 
 import './styles.css';
 
@@ -16,10 +17,14 @@ type UrlParams = {
 };
 
 const Form = () => {
-  const [selectCategories, setSelectCategories] = useState<Category[]>();
   const { productId } = useParams<UrlParams>();
+
   const isEditing = productId !== 'create';
+
   const history = useHistory();
+
+  const [selectCategories, setSelectCategories] = useState<Category[]>([]);
+
   const {
     register,
     handleSubmit,
@@ -38,6 +43,7 @@ const Form = () => {
     if (isEditing) {
       requestBackend({ url: `/products/${productId}` }).then((response) => {
         const product = response.data as Product;
+
         setValue('name', product.name);
         setValue('price', product.price);
         setValue('description', product.description);
@@ -52,6 +58,7 @@ const Form = () => {
       ...formData,
       price: String(formData.price).replace(',', '.'),
     };
+
     const config: AxiosRequestConfig = {
       method: isEditing ? 'PUT' : 'POST',
       url: isEditing ? `/products/${productId}` : '/products',
@@ -64,8 +71,8 @@ const Form = () => {
         toast.info('Produto cadastrado com sucesso');
         history.push('/admin/products');
       })
-      .catch((error) => {
-        toast.error('Falha ao cadastrar o produto');
+      .catch(() => {
+        toast.error('Erro ao cadastrar produto');
       });
   };
 
@@ -76,18 +83,19 @@ const Form = () => {
   return (
     <div className="product-crud-container">
       <div className="base-card product-crud-form-card">
-        <h1 className="product-crud-form-title">Dados do produto</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <h1 className="product-crud-form-title">DADOS DO PRODUTO</h1>
+
+        <form onSubmit={handleSubmit(onSubmit)} data-testid="form">
           <div className="row product-crud-inputs-container">
             <div className="col-lg-6 product-crud-inputs-left-container">
-              <div className="product-crud-input margin-bottom-30">
+              <div className="margin-bottom-30">
                 <input
                   {...register('name', {
                     required: 'Campo obrigatório',
                   })}
                   type="text"
                   className={`form-control base-input ${
-                    errors.name ? `is-invalid` : ''
+                    errors.name ? 'is-invalid' : ''
                   }`}
                   placeholder="Nome do produto"
                   name="name"
@@ -98,8 +106,10 @@ const Form = () => {
                 </div>
               </div>
 
-              <div className="margin-bottom-30">
-                <label htmlFor="categories" className="d-none">Categorias</label>
+              <div className="margin-bottom-30 ">
+                <label htmlFor="categories" className="d-none">
+                  Categorias
+                </label>
                 <Controller
                   name="categories"
                   rules={{ required: true }}
@@ -125,7 +135,7 @@ const Form = () => {
                 )}
               </div>
 
-              <div className="product-crud-input margin-bottom-30">
+              <div className="margin-bottom-30">
                 <Controller
                   name="price"
                   rules={{ required: 'Campo obrigatório' }}
@@ -134,7 +144,7 @@ const Form = () => {
                     <CurrencyInput
                       placeholder="Preço"
                       className={`form-control base-input ${
-                        errors.name ? `is-invalid` : ''
+                        errors.name ? 'is-invalid' : ''
                       }`}
                       disableGroupSeparators={true}
                       value={field.value}
@@ -148,18 +158,18 @@ const Form = () => {
                 </div>
               </div>
 
-              <div className="product-crud-input margin-bottom-30">
+              <div className="margin-bottom-30">
                 <input
                   {...register('imgUrl', {
                     required: 'Campo obrigatório',
                     pattern: {
                       value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
-                      message: 'Deve ser uma url válida',
+                      message: 'Deve ser uma URL válida',
                     },
                   })}
                   type="text"
                   className={`form-control base-input ${
-                    errors.imgUrl ? `is-invalid` : ''
+                    errors.name ? 'is-invalid' : ''
                   }`}
                   placeholder="URL da imagem do produto"
                   name="imgUrl"
@@ -173,15 +183,15 @@ const Form = () => {
             <div className="col-lg-6">
               <div>
                 <textarea
+                  rows={10}
                   {...register('description', {
                     required: 'Campo obrigatório',
                   })}
                   className={`form-control base-input h-auto ${
-                    errors.name ? `is-invalid` : ''
+                    errors.name ? 'is-invalid' : ''
                   }`}
                   placeholder="Descrição"
                   name="description"
-                  rows={10}
                   data-testid="description"
                 />
                 <div className="invalid-feedback d-block">
@@ -192,12 +202,12 @@ const Form = () => {
           </div>
           <div className="product-crud-buttons-container">
             <button
+              className="btn btn-outline-danger product-crud-button"
               onClick={handleCancel}
-              className="btn btn-outline-danger product-crud-buttom"
             >
               CANCELAR
             </button>
-            <button className="btn btn-primary text-white product-crud-buttom">
+            <button className="btn btn-primary product-crud-button text-white">
               SALVAR
             </button>
           </div>
