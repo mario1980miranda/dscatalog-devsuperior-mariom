@@ -4,8 +4,8 @@ import Auth from "pages/Admin/Auth";
 import Catalog from "pages/Catalog";
 import Home from "pages/Home";
 import ProductDetails from "pages/ProductDetails";
-import { Router, Redirect, Route, Switch } from "react-router-dom";
 import history from "util/history";
+import { Router, Redirect, Route, Switch } from "react-router-dom";
 
 const Routes = () => (
     <Router history={history}>

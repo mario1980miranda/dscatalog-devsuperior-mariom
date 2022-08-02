@@ -15,6 +15,7 @@ const Catalog = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getProducts = (pageNumber: number) => {
+    let isMounted = true;
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: '/products',
@@ -27,10 +28,15 @@ const Catalog = () => {
     setIsLoading(true);
     requestBackend(params)
       .then((response) => {
-        setPage(response.data);
+        if (isMounted) {
+          setPage(response.data);
+        }
       })
       .finally(() => {
         setIsLoading(false);
+        return () => {
+          isMounted = false;
+        };
       });
   };
 
