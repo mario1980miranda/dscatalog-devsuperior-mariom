@@ -1,35 +1,24 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { render, screen, waitFor } from "@testing-library/react";
+import Catalog from "..";
 import history from 'util/history';
-import Catalog from '..';
+import { Router } from 'react-router-dom';
+import { server } from './fixtures';
 
-describe('Catalog page tests', () => {
-  test('Should render Catalog page first state with loading...', () => {
-    // ARRANGER
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
-    // ACT
+test('should render Catalog with products', async () => {
+
     render(
-      <Router history={history}>
-        <Catalog />
-      </Router>
+        <Router history={history}>
+             <Catalog />
+        </Router>
     );
 
-    // ASSERT
     expect(screen.getByText('Catálogo de produtos')).toBeInTheDocument();
-  });
 
-  test('Should render Catalog with products with async call', async () => {
-    act(() => {
-        render(
-          <Router history={history}>
-            <Catalog />
-          </Router>
-        );
+    await waitFor(() => {
+        expect(screen.getByText('PC Gamer Ez')).toBeInTheDocument();
     });
-
-    expect(screen.getByText('Catálogo de produtos')).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.getByText('Smart TV')).toBeInTheDocument()
-    );
-  });
 });
