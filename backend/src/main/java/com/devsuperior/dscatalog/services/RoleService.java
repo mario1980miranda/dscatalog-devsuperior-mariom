@@ -2,12 +2,11 @@ package com.devsuperior.dscatalog.services;
 
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dscatalog.dto.RoleDTO;
@@ -15,6 +14,8 @@ import com.devsuperior.dscatalog.entities.Role;
 import com.devsuperior.dscatalog.repositories.RoleRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class RoleService {
@@ -49,6 +50,7 @@ public class RoleService {
 		}
 	}
 
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(final Long id) {
 		try {
 			this.repository.deleteById(id);

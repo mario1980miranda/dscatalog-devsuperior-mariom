@@ -3,10 +3,10 @@ package com.devsuperior.dscatalog.dto;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
 import com.devsuperior.dscatalog.entities.User;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class UserDTO {
 

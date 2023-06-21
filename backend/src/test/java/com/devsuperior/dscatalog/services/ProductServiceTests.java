@@ -1,11 +1,9 @@
 package com.devsuperior.dscatalog.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +26,8 @@ import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.dscatalog.tests.Factory;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @ExtendWith(SpringExtension.class)
 public class ProductServiceTests {
