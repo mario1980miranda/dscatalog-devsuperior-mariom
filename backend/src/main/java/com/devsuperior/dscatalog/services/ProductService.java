@@ -34,17 +34,17 @@ public class ProductService {
 	
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(Long categoryId, String name, final Pageable pageable) {
-		List<Category> categories = (categoryId <= 0) ? null : Arrays.asList(categoryRepository.getOne(categoryId));
-		final Page<Product> page = this.repository.find(categories, name, pageable);
-		repository.findProductsWithCategories(page.getContent());
-		return page.map(x -> new ProductDTO(x, x.getCategories()));
+		
+		final Page<Product> page = this.repository.findByNameContainsIgnoreCase(name, pageable);
+		repository.findProductsWithCategories(page.toList());
+		return page.map(x -> new ProductDTO(x));
 	}
 
 	@Transactional(readOnly = true)
 	public ProductDTO findById(final Long id) {
 		final Optional<Product> obj = this.repository.findById(id);
 		final Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new ProductDTO(entity, entity.getCategories());
+		return new ProductDTO(entity);
 	}
 
 	@Transactional

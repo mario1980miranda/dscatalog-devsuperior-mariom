@@ -52,11 +52,7 @@ public class ProductDTO implements Serializable {
 		this.price = entity.getPrice();
 		this.imgUrl = entity.getImgUrl();
 		this.date = entity.getDate();
-	}
-	
-	public ProductDTO(final Product entity, final Set<Category> categories) {
-		this(entity);
-		categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
+		this.categories = entity.getCategories().stream().map(cat -> new CategoryDTO(cat)).toList();
 	}
 
 	public Long getId() {
