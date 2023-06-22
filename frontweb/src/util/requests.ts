@@ -31,7 +31,7 @@ export const requestBackendLogin = (loginData: LoginData) => {
   return axios({
     method: 'POST',
     baseURL: BASE_URL,
-    url: '/oauth/token',
+    url: '/oauth2/token',
     data: data,
     headers: headers,
   });
