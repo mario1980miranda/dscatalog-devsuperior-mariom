@@ -92,7 +92,7 @@ public class ProductResourceTests {
 		String jsonBody = objectMapper.writeValueAsString(productDTO);
 		
 		final ResultActions result = 
-				mockMvc.perform(post("/products/")
+				mockMvc.perform(post("/products")
 						.header("Authorization", "Bearer " + accessToken)
 						.content(jsonBody)
 						.contentType(MediaType.APPLICATION_JSON)

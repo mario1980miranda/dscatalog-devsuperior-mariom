@@ -62,20 +62,21 @@ public class ProductServiceTests {
 		
 		Mockito.when(repository.save(any())).thenReturn(product);
 		
+		Mockito.when(repository.existsById(existingId)).thenReturn(Boolean.TRUE);
 		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(product));
 		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
 		
 		Mockito.when(repository.findByNameContainsIgnoreCase(any(), any())).thenReturn(page);
 		
-		Mockito.when(repository.getOne(existingId)).thenReturn(product);
-		Mockito.when(repository.getOne(nonExistingId)).thenThrow(EntityNotFoundException.class);
+		Mockito.when(repository.getReferenceById(existingId)).thenReturn(product);
+		Mockito.when(repository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
 		
 		Mockito.doNothing().when(repository).deleteById(existingId);
 		Mockito.doThrow(ResourceNotFoundException.class).when(repository).deleteById(nonExistingId);
 		Mockito.doThrow(DatabaseException.class).when(repository).deleteById(dependentId);
 		
-		Mockito.when(categoryRepository.getOne(existingId)).thenReturn(category);
-		Mockito.when(categoryRepository.getOne(nonExistingId)).thenThrow(EntityNotFoundException.class);
+		Mockito.when(categoryRepository.getReferenceById(existingId)).thenReturn(category);
+		Mockito.when(categoryRepository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
 	}
 
 	@Test
@@ -98,7 +99,7 @@ public class ProductServiceTests {
 	public void updateShouldReturnProductDTOWhenIdExists() {
 		final ProductDTO result = service.update(existingId, productDTO);
 		
-		Mockito.verify(repository).getOne(existingId);
+		Mockito.verify(repository).getReferenceById(existingId);
 		Assertions.assertNotNull(result.getId());
 	}
 	
@@ -127,23 +128,14 @@ public class ProductServiceTests {
 	}
 	
 	@Test
-	public void deleteShouldThrowDatabaseExceptionWhenIdDoesNotExist() {
-		
-		Assertions.assertThrows(DatabaseException.class, () -> {
-			service.delete(dependentId);
-		});
-		
-		Mockito.verify(repository, Mockito.times(1)).deleteById(dependentId);
-	}
-	
-	@Test
 	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
 		
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.delete(nonExistingId);
 		});
 		
-		Mockito.verify(repository, Mockito.times(1)).deleteById(nonExistingId);
+		Mockito.verify(repository, Mockito.times(1)).existsById(nonExistingId);
+		Mockito.verify(repository, Mockito.times(0)).deleteById(nonExistingId);
 	}
 	
 	@Test

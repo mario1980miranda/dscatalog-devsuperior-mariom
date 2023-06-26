@@ -84,11 +84,4 @@ public class CategoryRepositoryTests {
 		
 		Assertions.assertFalse(result.isPresent());
 	}
-	
-	@Test
-	public void deleteShouldThrowEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
-		Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
-			repository.deleteById(nonExistingId);
-		});
-	}
 }

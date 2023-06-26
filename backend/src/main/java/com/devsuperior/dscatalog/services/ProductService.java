@@ -1,12 +1,9 @@
 package com.devsuperior.dscatalog.services;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -58,7 +55,7 @@ public class ProductService {
 	@Transactional
 	public ProductDTO update(final Long id, final ProductDTO dto) {
 		try {
-			Product entity = this.repository.getOne(id);
+			Product entity = this.repository.getReferenceById(id);
 			this.copyDtoToEntity(dto, entity);
 			entity = this.repository.save(entity);
 			return new ProductDTO(entity);
@@ -69,10 +66,11 @@ public class ProductService {
 
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(final Long id) {
+		if (!this.repository.existsById(id)) {
+			throw new ResourceNotFoundException("Resource non trouvé");
+		}
 		try {
 			this.repository.deleteById(id);
-		} catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id not found : " + id);
 		} catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Integrity violation");
 		}
@@ -88,7 +86,7 @@ public class ProductService {
 		entity.getCategories().clear();
 		
 		for (CategoryDTO catDto : dto.getCategories()) {
-			Category category = this.categoryRepository.getOne(catDto.getId());
+			Category category = this.categoryRepository.getReferenceById(catDto.getId());
 			entity.getCategories().add(category);
 		}
 	}

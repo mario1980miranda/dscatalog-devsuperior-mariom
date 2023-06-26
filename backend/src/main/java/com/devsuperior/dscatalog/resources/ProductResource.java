@@ -47,7 +47,7 @@ public class ProductResource {
 		return ResponseEntity.ok(dto);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
 		dto = this.service.insert(dto);
@@ -56,14 +56,14 @@ public class ProductResource {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO dto) {
 		dto = this.service.update(id, dto);
 		return ResponseEntity.accepted().body(dto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> delete(@PathVariable Long id) {
 		this.service.delete(id);

@@ -43,7 +43,7 @@ public class CategoryResource {
 		return ResponseEntity.ok(dto);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@PostMapping
 	public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto) {
 		dto = this.service.insert(dto);
@@ -52,14 +52,14 @@ public class CategoryResource {
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto) {
 		dto = this.service.update(id, dto);
 		return ResponseEntity.accepted().body(dto);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_CLIENT')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<CategoryDTO> delete(@PathVariable Long id) {
 		this.service.delete(id);
